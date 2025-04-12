@@ -72,46 +72,23 @@ function App() {
               color="#f7df1e"
               percentage={70}
             ></SkillBar>
-            <SkillBar
-              name="React"
-              color="#61DAFB" // Blue color for React
-              percentage={60}
-            ></SkillBar>
-            <SkillBar
-              name="Node.js"
-              color="#679c58" // Green color for Node.js
-              percentage={30}
-            ></SkillBar>
+            <SkillBar name="React" color="#61DAFB" percentage={60}></SkillBar>
+            <SkillBar name="Node.js" color="#679c58" percentage={30}></SkillBar>
             <SkillBar
               name="Tailwind CSS"
-              color="#38B2AC" // Teal color for Tailwind CSS
+              color="#38B2AC"
               percentage={40}
             ></SkillBar>
             <SkillBar
               name="TypeScript"
-              color="#007acc" // Blue color for TypeScript
+              color="#007acc"
               percentage={30}
             ></SkillBar>
-            <SkillBar
-              name="Back4App"
-              color="#222" // Blue color for TypeScript
-              percentage={50}
-            ></SkillBar>
-            <SkillBar
-              name="MongoDB"
-              color="#002645" // Blue color for TypeScript
-              percentage={50}
-            ></SkillBar>
-            <SkillBar
-              name="SQL"
-              color="#ff9800" // Blue color for TypeScript
-              percentage={50}
-            ></SkillBar>
-            <SkillBar
-              name="SEO"
-              color="#ac33ff" // Blue color for TypeScript
-              percentage={60}
-            ></SkillBar>
+            <SkillBar name="Back4App" color="#222" percentage={50}></SkillBar>
+            <SkillBar name="MongoDB" color="#002645" percentage={50}></SkillBar>
+            <SkillBar name="SQL" color="#ff9800" percentage={50}></SkillBar>
+            <SkillBar name="SEO" color="#ac33ff" percentage={60}></SkillBar>
+            <SkillBar name="Git" color="#ffac33" percentage={50}></SkillBar>
           </div>
         </section>
 
@@ -125,7 +102,6 @@ function App() {
       <footer className="bg-gray-800 text-white py-4">
         <div className="container mx-auto text-center">
           <p>&copy; 2025 Andréa DUHAMEL. Tous droits réservés.</p>
-          <p>Développé par Andréa DUHAMEL</p>
           <p>
             <a
               href="https://github.com/AndreaDuhamel"

@@ -1,3 +1,5 @@
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
 function NavBar() {
@@ -49,7 +51,7 @@ function NavBar() {
           </button>
 
           {/* Menu desktop */}
-          <ul className="hidden text-2xl lg:flex space-x-4 text-lg font-bold">
+          <ul className="hidden text-xl lg:flex space-x-4 font-bold">
             <li>
               <a href="#projects" className="text-white hover:text-gray-300">
                 Mes projets
@@ -61,12 +63,19 @@ function NavBar() {
               </a>
             </li>
             <li>
+              <a href="#contact" className="text-white hover:text-gray-300">
+                Me contacter
+              </a>
+            </li>
+            <li className="text-white hover:text-gray-300">|</li>
+            <li>
               <a
                 href="https://github.com/Sydywiizox"
                 className="text-white hover:text-gray-300"
                 target="_blank"
+                rel="noopener noreferrer"
               >
-                Github
+                <FontAwesomeIcon icon={faGithub} />
               </a>
             </li>
             <li>
@@ -74,13 +83,9 @@ function NavBar() {
                 href="https://www.linkedin.com/in/andr%C3%A9a-duhamel-9538ab35b/"
                 className="text-white hover:text-gray-300"
                 target="_blank"
+                rel="noopener noreferrer"
               >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="text-white hover:text-gray-300">
-                Me contacter
+                <FontAwesomeIcon icon={faLinkedin} />
               </a>
             </li>
           </ul>
@@ -109,12 +114,23 @@ function NavBar() {
             </li>
             <li>
               <a
+                href="#contact"
+                className="block text-white hover:text-gray-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Me contacter
+              </a>
+            </li>
+            <li>
+              <a
                 href="https://github.com/Sydywiizox"
                 className="block text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Github
+                <FontAwesomeIcon icon={faGithub} className="ml-2" />
               </a>
             </li>
             <li>
@@ -123,17 +139,10 @@ function NavBar() {
                 className="block text-white hover:text-gray-300"
                 onClick={() => setIsOpen(false)}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="block text-white hover:text-gray-300"
-                onClick={() => setIsOpen(false)}
-              >
-                Me contacter
+                <FontAwesomeIcon icon={faLinkedin} className="ml-2" />
               </a>
             </li>
           </ul>

@@ -4,12 +4,19 @@ import HeroBanner from "./components/HeroBanner.tsx";
 import NavBar from "./components/Navbar.tsx";
 import Project from "./components/Project.tsx";
 import SkillBar from "./components/SkillBar.tsx";
-import { ProjectData, projectService } from "./services/projectService";
+import { ProjectData, projectService } from "./services/projectService.ts";
+import { SkillData, skillService } from "./services/skillService.ts";
 
 function App() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
+  const [skills, setSkills] = useState<SkillData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isSorted, setIsSorted] = useState(false);
+
+  const sortedSkills = isSorted
+    ? [...skills].sort((a, b) => b.percentage - a.percentage)
+    : skills;
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -24,6 +31,19 @@ function App() {
       }
     };
 
+    const fetchSkills = async () => {
+      try {
+        const data = await skillService.getSkills();
+        setSkills(data);
+      } catch (err) {
+        setError("Erreur lors du chargement des compétences");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
     fetchProjects();
   }, []);
 
@@ -61,34 +81,40 @@ function App() {
         </section>
 
         <section id="skills" className="py-15 scroll-mt-[var(--navbar-height)]">
-          <h2 className="text-4xl font-bold mb-8 text-center">
-            Mes compétences
-          </h2>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
+            <h2 className="text-4xl font-bold text-center md:text-left">
+              Mes compétences
+            </h2>
+            <div className="flex items-center gap-3 mt-4 md:mt-0">
+              <span className="text-gray-600">Tri par niveau</span>
+              <button
+                onClick={() => setIsSorted(!isSorted)}
+                className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 transition-colors duration-300"
+                role="switch"
+                aria-checked={isSorted}
+              >
+                <span
+                  className={`${
+                    isSorted
+                      ? "translate-x-6 bg-blue-600"
+                      : "translate-x-1 bg-white"
+                  } inline-block h-4 w-4 transform rounded-full transition-transform duration-300 shadow-md`}
+                />
+                <span className="sr-only">
+                  {isSorted ? "Désactiver le tri" : "Activer le tri"}
+                </span>
+              </button>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <SkillBar name="HTML" color="#e34c26" percentage={80}></SkillBar>
-            <SkillBar name="CSS" color="#264de4" percentage={80}></SkillBar>
-            <SkillBar
-              name="JavaScript"
-              color="#f7df1e"
-              percentage={70}
-            ></SkillBar>
-            <SkillBar name="React" color="#61DAFB" percentage={60}></SkillBar>
-            <SkillBar name="Node.js" color="#679c58" percentage={30}></SkillBar>
-            <SkillBar
-              name="Tailwind CSS"
-              color="#38B2AC"
-              percentage={40}
-            ></SkillBar>
-            <SkillBar
-              name="TypeScript"
-              color="#007acc"
-              percentage={30}
-            ></SkillBar>
-            <SkillBar name="Back4App" color="#222" percentage={50}></SkillBar>
-            <SkillBar name="MongoDB" color="#002645" percentage={50}></SkillBar>
-            <SkillBar name="SQL" color="#ff9800" percentage={50}></SkillBar>
-            <SkillBar name="SEO" color="#ac33ff" percentage={60}></SkillBar>
-            <SkillBar name="Git" color="#ffac33" percentage={50}></SkillBar>
+            {sortedSkills.map((skill) => (
+              <SkillBar
+                key={skill.objectId}
+                name={skill.name}
+                color={skill.color}
+                percentage={skill.percentage}
+              />
+            ))}
           </div>
         </section>
 

@@ -12,27 +12,21 @@ const parseAPI = axios.create({
   },
 });
 
-export interface ProjectData {
+export interface SkillData {
   objectId?: string;
-  title: string;
-  githubLink: string;
-  image: {
-    name: string;
-    url: string;
-    __type: string;
-  };
-  description: string;
-  skills: string[];
+  name: string;
+  color: string;
+  percentage: number;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export const projectService = {
-  async getProjects(): Promise<ProjectData[]> {
+export const skillService = {
+  async getSkills(): Promise<SkillData[]> {
     try {
-      const response = await parseAPI.get("/classes/project");
+      const response = await parseAPI.get("/classes/competence");
       console.log(
-        "Données reçues de Back4App: (projets)",
+        "Données reçues de Back4App: (competences)",
         response.data.results
       );
       return response.data.results;

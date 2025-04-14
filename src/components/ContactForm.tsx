@@ -2,6 +2,9 @@ import emailjs from "emailjs-com";
 import React, { useRef } from "react";
 import { toast, Toaster } from "react-hot-toast";
 
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const ContactForm: React.FC = () => {
   const form = useRef<HTMLFormElement | null>(null);
 
@@ -10,12 +13,7 @@ const ContactForm: React.FC = () => {
 
     if (form.current) {
       toast.promise(
-        emailjs.sendForm(
-          "service_x1fim3c",
-          "template_y1vzheh",
-          form.current,
-          "cUlZmP9K1lZ5iTdHB"
-        ),
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY),
         {
           loading: "Envoi en cours...",
           success: "Message envoyé avec succès!",

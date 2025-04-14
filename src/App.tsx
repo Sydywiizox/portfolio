@@ -72,7 +72,8 @@ function App() {
                   title={project.title}
                   description={project.description}
                   imageUrl={project.image.url}
-                  link={project.githubLink}
+                  githubLink={project.githubLink}
+                  previewLink={project.previewLink}
                   technologies={project.skills}
                 />
               ))}

@@ -4,7 +4,8 @@ interface ProjectProps {
   title: string;
   description: string;
   imageUrl: string;
-  link: string;
+  githubLink: string;
+  previewLink: string;
   technologies?: string[];
 }
 
@@ -12,7 +13,8 @@ const Project: FC<ProjectProps> = ({
   title,
   description,
   imageUrl,
-  link,
+  githubLink,
+  previewLink,
   technologies,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +63,7 @@ const Project: FC<ProjectProps> = ({
               </div>
             )}
             <a
-              href={link}
+              href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
@@ -121,14 +123,28 @@ const Project: FC<ProjectProps> = ({
                     ))}
                   </div>
                 </div>
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
-                >
-                  Voir le projet sur GitHub
-                </a>
+                <div className="flex gap-4 items-center">
+                  {githubLink && (
+                    <a
+                      href={githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      Voir le projet sur GitHub
+                    </a>
+                  )}
+                  {previewLink && (
+                    <a
+                      href={previewLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      Voir le site
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>

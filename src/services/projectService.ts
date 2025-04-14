@@ -16,6 +16,7 @@ export interface ProjectData {
   objectId?: string;
   title: string;
   githubLink: string;
+  previewLink: string;
   image: {
     name: string;
     url: string;

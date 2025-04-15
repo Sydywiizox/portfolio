@@ -17,11 +17,7 @@ export interface ProjectData {
   title: string;
   githubLink: string;
   previewLink: string;
-  image: {
-    name: string;
-    url: string;
-    __type: string;
-  };
+  images: string[];
   description: string;
   skills: string[];
   createdAt?: string;

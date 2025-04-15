@@ -71,7 +71,7 @@ function App() {
                   key={project.objectId}
                   title={project.title}
                   description={project.description}
-                  imageUrl={project.image.url}
+                  images={project.images}
                   githubLink={project.githubLink}
                   previewLink={project.previewLink}
                   technologies={project.skills}

@@ -3,7 +3,7 @@ import { FC, useCallback, useState } from "react";
 interface ProjectProps {
   title: string;
   description: string;
-  imageUrl: string;
+  images: string[];
   githubLink: string;
   previewLink: string;
   technologies?: string[];
@@ -12,7 +12,7 @@ interface ProjectProps {
 const Project: FC<ProjectProps> = ({
   title,
   description,
-  imageUrl,
+  images,
   githubLink,
   previewLink,
   technologies,
@@ -28,12 +28,14 @@ const Project: FC<ProjectProps> = ({
     []
   );
 
+  const [carrouselIndex, setCarrouselIndex] = useState<number>(0); // Replace with your logic to determine the current image index
+
   return (
     <>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
         <div className="relative">
           <img
-            src={imageUrl}
+            src={images[0]}
             alt={title}
             className="w-full h-48 object-cover"
           />
@@ -80,11 +82,11 @@ const Project: FC<ProjectProps> = ({
           className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
           onClick={handleClickOutside}
         >
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="relative">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-2 right-2 cursor-pointer p-1 bg-gray-700/80 rounded-full text-white hover:text-gray-400"
+                className="absolute top-2 right-2 z-10 cursor-pointer p-1 bg-gray-700/80 rounded-full text-white hover:text-gray-400"
               >
                 <svg
                   className="w-6 h-6"
@@ -100,11 +102,66 @@ const Project: FC<ProjectProps> = ({
                   />
                 </svg>
               </button>
-              <img
-                src={imageUrl}
-                alt={title}
-                className="w-full h-96 object-cover rounded-t-lg"
-              />
+
+              {/* Conteneur de l'image avec hauteur fixe et scroll */}
+              <div className="h-96 overflow-y-auto">
+                <img
+                  src={images[carrouselIndex]}
+                  alt={title}
+                  className="w-full object-cover"
+                />
+              </div>
+              {images.length > 1 && (
+                <div className=" flex items-center justify-center gap-4 p-4">
+                  {/* previous button */}
+                  <button
+                    onClick={() =>
+                      setCarrouselIndex(
+                        (prevIndex) =>
+                          (prevIndex - 1 + images.length) % images.length
+                      )
+                    }
+                    className="z-10 cursor-pointer p-1 bg-gray-700/80 rounded-full text-white hover:text-gray-400"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  {/* next button */}
+                  <button
+                    onClick={() =>
+                      setCarrouselIndex(
+                        (prevIndex) => (prevIndex + 1) % images.length
+                      )
+                    }
+                    className=" z-10 cursor-pointer p-1 bg-gray-700/80 rounded-full text-white hover:text-gray-400"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              )}
               <div className="p-8">
                 <h2 className="text-3xl font-bold mb-4">{title}</h2>
                 <p className="text-gray-600 text-lg mb-6">{description}</p>

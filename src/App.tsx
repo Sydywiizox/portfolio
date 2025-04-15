@@ -86,6 +86,7 @@ function App() {
             <h2 className="text-4xl font-bold text-center md:text-left">
               Mes compétences
             </h2>
+
             <div className="flex items-center gap-3 mt-4 md:mt-0">
               <span className="text-gray-600">Tri par niveau</span>
               <button
@@ -107,6 +108,7 @@ function App() {
               </button>
             </div>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedSkills.map((skill) => (
               <SkillBar
@@ -116,6 +118,33 @@ function App() {
                 percentage={skill.percentage}
               />
             ))}
+          </div>
+          <div className="bg-white rounded-lg my-4 shadow-lg p-6">
+            <h3 className="text-2xl font-bold mb-4 text-gray-800">
+              Mes formations
+            </h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <p className="text-lg font-semibold text-gray-800">
+                  2024 - 2025
+                </p>
+                <h4 className="text-xl font-bold text-blue-600">
+                  Développeur Web
+                </h4>
+                <p className="text-gray-600">OpenClassrooms</p>
+              </div>
+              <div className="border-l-4 border-blue-500 pl-4">
+                <p className="text-lg font-semibold text-gray-800">
+                  2019 - 2021
+                </p>
+                <h4 className="text-xl font-bold text-blue-600">
+                  DUT Informatique
+                </h4>
+                <p className="text-gray-600">
+                  IUT d'Arles (Académie Aix-Marseille)
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 

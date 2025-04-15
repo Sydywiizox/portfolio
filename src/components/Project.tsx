@@ -30,6 +30,12 @@ const Project: FC<ProjectProps> = ({
 
   const [carrouselIndex, setCarrouselIndex] = useState<number>(0); // Replace with your logic to determine the current image index
 
+  // Fonction pour tronquer le texte à la première phrase
+  const getTruncatedDescription = (text: string) => {
+    const firstSentence = text.match(/^.*?[.!?](?:\s|$)/);
+    return firstSentence ? firstSentence[0].trim() + "..." : text + "...";
+  };
+
   return (
     <>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
@@ -50,7 +56,9 @@ const Project: FC<ProjectProps> = ({
         </div>
         <div className="p-6">
           <h2 className="text-xl font-bold mb-2 text-gray-800">{title}</h2>
-          <p className="text-gray-600 mb-4">{description}</p>
+          <p className="text-gray-600 mb-4">
+            {getTruncatedDescription(description)}
+          </p>
           <div className="space-y-4">
             {technologies && (
               <div className="flex flex-wrap gap-2">
@@ -104,7 +112,7 @@ const Project: FC<ProjectProps> = ({
               </button>
 
               {/* Conteneur de l'image avec hauteur fixe et scroll */}
-              <div className="h-96 overflow-y-auto">
+              <div className="h-96 overflow-y-auto mb-2">
                 <img
                   src={images[carrouselIndex]}
                   alt={title}
@@ -162,9 +170,11 @@ const Project: FC<ProjectProps> = ({
                   </button>
                 </div>
               )}
-              <div className="p-8">
+              <div className="p-8 max-h-[40vh] overflow-y-auto">
                 <h2 className="text-3xl font-bold mb-4">{title}</h2>
-                <p className="text-gray-600 text-lg mb-6">{description}</p>
+                <p className="text-gray-600 text-lg mb-6 whitespace-pre-line">
+                  {description}
+                </p>
                 <div className="mb-6">
                   <h3 className="text-xl font-bold mb-3">
                     Technologies utilisées :

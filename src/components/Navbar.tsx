@@ -32,6 +32,9 @@ function NavBar() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 rounded cursor-pointer"
+            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <svg
               className="h-6 w-6"
@@ -41,6 +44,7 @@ function NavBar() {
               strokeWidth="2"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-hidden="true"
             >
               {isOpen ? (
                 <path d="M6 18L18 6M6 6l12 12" />
@@ -74,8 +78,10 @@ function NavBar() {
                 className="text-white hover:text-gray-300"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visiter mon profil GitHub"
               >
-                <FontAwesomeIcon icon={faGithub} />
+                <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+                <span className="sr-only">GitHub</span>
               </a>
             </li>
             <li>
@@ -84,15 +90,20 @@ function NavBar() {
                 className="text-white hover:text-gray-300"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visiter mon profil LinkedIn"
               >
-                <FontAwesomeIcon icon={faLinkedin} />
+                <FontAwesomeIcon icon={faLinkedin} aria-hidden="true" />
+                <span className="sr-only">LinkedIn</span>
               </a>
             </li>
           </ul>
         </div>
 
         {/* Menu mobile */}
-        <div className={`${isOpen ? "block" : "hidden"} lg:hidden mt-4`}>
+        <div
+          id="mobile-menu"
+          className={`${isOpen ? "block" : "hidden"} lg:hidden mt-4`}
+        >
           <ul className="flex flex-col space-y-2 font-bold">
             <li>
               <a

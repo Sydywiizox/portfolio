@@ -20,6 +20,7 @@ export interface ProjectData {
   images: string[];
   description: string;
   skills: string[];
+  difficulties?: string;
   createdAt?: string;
   updatedAt?: string;
 }

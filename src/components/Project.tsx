@@ -1,8 +1,11 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useCallback, useState } from "react";
-
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 interface ProjectProps {
   title: string;
   description: string;
+  difficulties?: string;
   images: string[];
   githubLink: string;
   previewLink: string;
@@ -12,6 +15,7 @@ interface ProjectProps {
 const Project: FC<ProjectProps> = ({
   title,
   description,
+  difficulties,
   images,
   githubLink,
   previewLink,
@@ -72,14 +76,32 @@ const Project: FC<ProjectProps> = ({
                 ))}
               </div>
             )}
-            <a
-              href={githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
-            >
-              Voir le projet
-            </a>
+            <div className="flex gap-4 items-center mt-4">
+              <a
+                href={githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Voir le projet{" "}
+                <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+              </a>
+              {previewLink && (
+                <a
+                  href={previewLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  Voir le site
+                  <FontAwesomeIcon
+                    icon={faArrowUpRightFromSquare}
+                    aria-hidden="true"
+                    className="ml-2"
+                  />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -94,7 +116,7 @@ const Project: FC<ProjectProps> = ({
             <div className="relative">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-2 right-2 z-10 cursor-pointer p-1 bg-gray-700/80 rounded-full text-white hover:text-gray-400"
+                className="absolute top-2 right-2 z-10 cursor-pointer p-1 bg-gray-700/80 rounded-full text-white hover:bg-gray-700/60"
               >
                 <svg
                   className="w-6 h-6"
@@ -112,7 +134,7 @@ const Project: FC<ProjectProps> = ({
               </button>
 
               {/* Conteneur de l'image avec hauteur fixe et scroll */}
-              <div className="h-96 overflow-y-auto mb-2">
+              <div className="h-72 sm:h-96 overflow-y-auto mb-2">
                 <img
                   src={images[carrouselIndex]}
                   alt={title}
@@ -175,6 +197,8 @@ const Project: FC<ProjectProps> = ({
                 <p className="text-gray-600 text-lg mb-6 whitespace-pre-line">
                   {description}
                 </p>
+
+                {/* Section Technologies */}
                 <div className="mb-6">
                   <h3 className="text-xl font-bold mb-3">
                     Technologies utilisées :
@@ -190,6 +214,20 @@ const Project: FC<ProjectProps> = ({
                     ))}
                   </div>
                 </div>
+
+                {/* Nouvelle section Difficultés */}
+                {difficulties && (
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold mb-3">
+                      Difficultés rencontrées :
+                    </h3>
+                    <p className="text-gray-600 text-lg whitespace-pre-line">
+                      {difficulties}
+                    </p>
+                  </div>
+                )}
+
+                {/* Section liens */}
                 <div className="flex gap-4 items-center">
                   {githubLink && (
                     <a
@@ -198,7 +236,8 @@ const Project: FC<ProjectProps> = ({
                       rel="noopener noreferrer"
                       className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors"
                     >
-                      Voir le projet sur GitHub
+                      Voir le projet{" "}
+                      <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
                     </a>
                   )}
                   {previewLink && (

@@ -147,6 +147,22 @@ function App() {
               </div>
             </div>
           </div>
+          <div className="bg-white rounded-lg my-4 shadow-lg p-6">
+            <h3 className="text-2xl font-bold mb-4 text-gray-800">
+              Mes expériences
+            </h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <p className="text-lg font-semibold text-gray-800">
+                  2021 (12 semaines)
+                </p>
+                <h4 className="text-xl font-bold text-blue-600">
+                  Développeur web (Stage fin de DUT)
+                </h4>
+                <p className="text-gray-600">Agence Easy - ELS Conseil</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section
